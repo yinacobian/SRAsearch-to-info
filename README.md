@@ -8,8 +8,9 @@ Citation: https://www.searchsra.org/pages/citeus
 2. Upload your genome to search
 3. Download the results to your local machine
 
-#Download all the results
-#Go to the results.txt file, then find the line results_url= http://149.165.169.158/results/92cca781-e71a-4e47-82a4-42daf415656/results.zip
+Download all the results
+Go to the results.txt file, then find the line results_url= http://149.165.169.158/results/92cca781-e71a-4e47-82a4-42daf415656/results.zip
+
 wget http://149.165.169.158/results/92cca781-e71a-4e47-82a4-42daf4156565/results.zip
 
 4. Unizip the resuls.zip folder
