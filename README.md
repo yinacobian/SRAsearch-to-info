@@ -33,6 +33,10 @@ ls | grep '.bam' | cut -f 1 -d '.' | sort -n | uniq > IDS.txt
 
 cat IDS.txt | xargs -I {id} sh -c 'echo {id}; samtools view {id}.bam | wc -l' | paste - - > hit_counts.tab
 
+9. Sort by number of hits
+
+sort -k 2 -nr hit_counts.tab > sorted_hit_counts.tab
+
 Get info about each metagenome:
 
 cat IDS_sorted.txt | xargs -I {id} sh -c " echo {id}; curl 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=sra&id={id}' 2> /dev/null | xtract -pattern EXPERIMENT_PACKAGE -block EXPERIMENT -element TITLE" > titles_IDS_sorted.txt
