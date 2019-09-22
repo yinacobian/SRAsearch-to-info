@@ -37,7 +37,10 @@ cat IDS.txt | xargs -I {id} sh -c 'echo {id}; samtools view {id}.bam | wc -l' | 
 
 sort -k 2 -nr hit_counts.tab | grep -v '0' > sorted_hit_counts.tab
 
-Get info about each metagenome:
+10. Get info about each metagenome:
 
-cat IDS_sorted.txt | xargs -I {id} sh -c " echo {id}; curl 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=sra&id={id}' 2> /dev/null | xtract -pattern EXPERIMENT_PACKAGE -block EXPERIMENT -element TITLE" > titles_IDS_sorted.txt
+head -n 10 sorted_Achromo_to_SRA-MG_hit_counts.tab | cut -f 1  | xargs -I {id} sh -c " echo -ne '{id}\t'; curl 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=sra&id={id}' 2> /dev/null | xtract -pattern EXPERIMENT_PACKAGE -block EXPERIMENT -element TITLE; echo " | sed '/^$/d' | sed 's/\s*$//'
+
+
+
 
