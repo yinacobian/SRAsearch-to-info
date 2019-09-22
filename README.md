@@ -33,9 +33,9 @@ ls | grep '.bam' | cut -f 1 -d '.' | sort -n | uniq > IDS.txt
 
 cat IDS.txt | xargs -I {id} sh -c 'echo {id}; samtools view {id}.bam | wc -l' | paste - - > hit_counts.tab
 
-9. Sort by number of hits
+9. Sort by number of hits and delete rows with zero hits
 
-sort -k 2 -nr hit_counts.tab > sorted_hit_counts.tab
+sort -k 2 -nr hit_counts.tab | grep -v '0' > sorted_hit_counts.tab
 
 Get info about each metagenome:
 
