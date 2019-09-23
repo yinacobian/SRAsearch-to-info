@@ -39,7 +39,7 @@ sort -k 2 -nr hit_counts.tab | grep -v '0' > sorted_hit_counts.tab
 
 10. Get info about each metagenome:
 
-head -n 10 sorted_Achromo_to_SRA-MG_hit_counts.tab | cut -f 1  | xargs -I {id} sh -c " echo -ne '{id}\t'; curl 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=sra&id={id}' 2> /dev/null | xtract -pattern EXPERIMENT_PACKAGE -block EXPERIMENT -element TITLE; echo " | sed '/^$/d' | sed 's/\s*$//'
+cat sorted_hit_counts.tab | cut -f 1  | xargs -I {id} sh -c " echo -ne '{id}\t'; curl 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=sra&id={id}' 2> /dev/null | xtract -pattern EXPERIMENT_PACKAGE -block EXPERIMENT -element TITLE; echo " | sed '/^$/d' | sed 's/\s*$//' > titles_sorted_hit_counts.tab
 
 
 
