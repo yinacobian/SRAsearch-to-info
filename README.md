@@ -16,9 +16,13 @@ Go to the results.txt file, then find the line results_url= http://149.165.169.1
 wget http://149.165.169.158/results/92cca781-e71a-4e47-82a4-42daf4156565/results.zip
 
 4. Unizip the resuls.zip folder
+
 mkdir SRAsearchresults
+
 mv resuls.zip SRAsearchresults
+
 cd SRAsearchresults
+
 unzip resuls.zip
 
 5. Move all files to a single folder
